@@ -1,3 +1,4 @@
+import os
 from src.db_llm import LLMDB 
 from openai import AzureOpenAI
 from llama_index.core import PromptTemplate
@@ -12,9 +13,9 @@ class Retriever:
         self.embed_model = llmdb.get_llm_embedding() 
 
         self.llm = AzureOpenAI(
-            api_key="25417b9e73574c49965cad8f28ab4dd6",  
-            api_version="2024-02-01",
-            azure_endpoint="https://openaitcuc.openai.azure.com/"
+            api_key=os.getenv("API_KEY"),  
+            api_version=os.getenv("API_VERSION"),
+            azure_endpoint=os.getenv("API_ENDPOINT")
         ) 
         self.deployment_name = 'corpu-text-gpt-4o'
 
